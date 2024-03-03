@@ -1,0 +1,55 @@
+import json
+import os
+
+class Library:
+    def __init__(self):
+        self.books_file = 'books.json'
+        self.patrons_file = 'patrons.json'
+        self.transactions = []
+
+    def load_data(self):
+        if os.path.exists(self.books_file):
+            with open(self.books_file, 'r') as file:
+                self.books = json.load(file)
+        else:
+            self.books = []
+
+        if os.path.exists(self.patrons_file):
+            with open(self.patrons_file, 'r') as file:
+                self.patrons = json.load(file)
+        else:
+            self.patrons = []
+
+    def save_data(self):
+        with open(self.books_file, 'w') as file:
+            json.dump(self.books, file, indent=4)
+        
+        with open(self.patrons_file, 'w') as file:
+            json.dump(self.patrons, file, indent=4)
+
+    def add_book(self, title, author, isbn, quantity):
+        """Method to add a new book to the library."""
+        book = {'title': title, 'author': author, 'isbn': isbn, 'quantity': quantity}
+        self.books.append(book)
+        self.save_data()
+        print(f"Book '{title}' added to library inventory.")
+
+    def add_patron(self, name, id, contact_info):
+        """Method to add a new patron to the library."""
+        patron = {'name': name, 'id': id, 'contact_info': contact_info}
+        self.patrons.append(patron)
+        self.save_data()
+        print(f"Patron '{name}' added to the library system.")
+
+    
+# Example 
+library = Library()
+library.load_data()
+
+library.add_book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "9780439362139", 15)
+library.add_book("The Alchemist", "Paulo Coelho", "9780008283643", 5)
+
+
+library.add_patron("Charles Brown", "AB799", "charlesb@gmail.com")
+
+library.save_data()
