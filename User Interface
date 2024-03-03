@@ -1,0 +1,70 @@
+class LibraryCLI:
+    def __init__(self):
+        self.library = Library()
+
+    def display_menu(self):
+        print("Library Management System")
+        print("1. Add Book")
+        print("2. Add Patron")
+        print("3. Search Books")
+        print("4. Check Out Book")
+        print("5. Check In Book")
+        print("6. Generate Reports")
+        print("7. Exit")
+
+    def run(self):
+        while True:
+            self.display_menu()
+            choice = input("Input your choice: ")
+            if choice == '1':
+                self.add_book()
+            elif choice == '2':
+                self.add_patron()
+            elif choice == '3':
+                self.search_books()
+            elif choice == '4':
+                self.check_out_book()
+            elif choice == '5':
+                self.check_in_book()
+            elif choice == '6':
+                self.generate_reports()
+            elif choice == '7':
+                print("Exiting")
+                break
+            else:
+                print("Invalid choice, Try again.")
+
+    def add_book(self):
+        title = input("Enter the title of the book: ")
+        author = input("Enter the author of the book: ")
+        isbn = input("Enter the ISBN of the book: ")
+        quantity = int(input("Enter the quantity of the book: "))
+        self.library.add_book(title, author, isbn, quantity)
+
+    def add_patron(self):
+        name = input("Enter the name of the patron: ")
+        id = input("Enter the ID of the patron: ")
+        contact_info = input("Enter the contact information of the patron: ")
+        self.library.add_patron(name, id, contact_info)
+
+    def search_books(self):
+        keyword = input("Enter the keyword to search for books: ")
+        self.library.search_books(keyword)
+
+    def check_out_book(self):
+        isbn = input("Enter the ISBN of the book to check out: ")
+        patron_id = input("Enter the ID of the patron: ")
+        self.library.handle_transaction(isbn, patron_id, check_out=True)
+
+    def check_in_book(self):
+        isbn = input("Enter the ISBN of the book: ")
+        patron_id = input("Enter ID of the patron: ")
+        self.library.handle_transaction(isbn, patron_id, check_out=False)
+
+    def generate_reports(self):
+        self.library.generate_reports()
+
+# Example
+if __name__ == "__main__":
+    cli = LibraryCLI()
+    cli.run()
