@@ -1,0 +1,41 @@
+class Patron:
+    def __init__(self, name, id, contact_info):
+        self.name = name
+        self.id = id
+        self.contact_info = contact_info
+
+    def add_patron(self):
+        """Method to add a patron to the library system."""
+        print(f"Patron '{self.name}' added to the system.")
+
+    def update_patron(self, name=None, id=None, contact_info=None):
+        """Method to update patron details."""
+        if name:
+            self.name = name
+        if id:
+            self.id = id
+        if contact_info:
+            self.contact_info = contact_info
+
+    def remove_patron(self):
+        """Method to remove a patron from the library system."""
+        print(f"Patron '{self.name}' removed from the system.")
+
+    def display_details(self):
+        """Method to display patron details."""
+        print("Patron Details:")
+        print(f"Name: {self.name}")
+        print(f"ID: {self.id}")
+        print(f"Contact Information: {self.contact_info}")
+
+
+# Example
+patron1 = Patron("Charles Brown", "AB799", "charlesb@gmail.com")
+patron1.display_details()
+
+
+patron1.update_patron(contact_info="cbrown@gmail.com")
+patron1.display_details()
+
+
+patron1.remove_patron()
