@@ -1,0 +1,48 @@
+import datetime
+
+class Transaction:
+    def __init__(self, book, patron):
+        self.book = book
+        self.patron = patron
+        self.check_out_date = None
+        self.due_date = None
+        self.return_date = None
+
+    def check_out_book(self):
+        """Method to record book checkout."""
+        if self.book.quantity > 0:
+            self.check_out_date = datetime.date.today()
+            self.due_date = self.check_out_date + datetime.timedelta(days=14)  # Assuming 14 days loan period
+            self.book.quantity -= 1
+            print(f"Book '{self.book.title}' checked out by '{self.patron.name}'. Due date: {self.due_date}")
+        else:
+            print("Error: This book is out of stock.")
+
+    def check_in_book(self):
+        """Method to record book check-in."""
+        if self.check_out_date is not None:
+            self.return_date = datetime.date.today()
+            days_overdue = (self.return_date - self.due_date).days
+            if days_overdue > 0:
+                print(f"Book '{self.book.title}' returned by '{self.patron.name}' "
+                      f"({days_overdue} days overdue). Please pay the fine.")
+                # Implement fine calculation and management here
+            else:
+                print(f"Book '{self.book.title}' returned by '{self.patron.name}'.")
+            self.book.quantity += 1
+            self.check_out_date = None
+            self.due_date = None
+            self.return_date = None
+        else:
+            print("Error: This book has not been checked out.")
+
+# Example usage:
+from Book import Book  # Assuming Book class is defined in Book.py
+from Patron import Patron  # Assuming Patron class is defined in Patron.py
+
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 5)
+patron1 = Patron("John Doe", "P12345", "johndoe@example.com")
+
+transaction1 = Transaction(book1, patron1)
+transaction1.check_out_book()
+transaction1.check_in_book()  # Simulating return on the same day (no overdue)
