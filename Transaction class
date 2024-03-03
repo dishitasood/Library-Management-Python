@@ -40,9 +40,9 @@ class Transaction:
 from Book import Book  # Assuming Book class is defined in Book.py
 from Patron import Patron  # Assuming Patron class is defined in Patron.py
 
-book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 5)
-patron1 = Patron("John Doe", "P12345", "johndoe@example.com")
+book1 = Book("HARRY Potter and the Sorcerer's Stone", "J.K. Rowling", "9780439362139", 15)
+patron1 = Patron("Charles Brown", "AB799", "charlesb@gmail.com")
 
 transaction1 = Transaction(book1, patron1)
 transaction1.check_out_book()
-transaction1.check_in_book()  # Simulating return on the same day (no overdue)
+transaction1.check_in_book()  
