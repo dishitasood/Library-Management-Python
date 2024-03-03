@@ -1,0 +1,43 @@
+class Library:
+    def __init__(self):
+        self.books = []
+        self.patrons = []
+        self.transactions = []
+        self.users = {"Librarian": {"username": "Librarian111", "password": "books123"},
+                      "admin": {"username": "admin", "password": "admin123"}}
+
+    def authenticate_user(self, username, password):
+        """Method to authenticate users."""
+        if username in self.users and self.users[username]["password"] == password:
+            return True
+        return False
+
+    def is_librarian(self, username):
+        """Method to check if the user is a librarian."""
+        return username == "Librarian111"
+
+    def is_admin(self, username):
+        """Method to check if the user is an administrator."""
+        return username == "admin"
+
+    def add_book(self, username, password, title, author, isbn, quantity):
+        """Method to add a new book to the library."""
+        if self.authenticate_user(username, password) and (self.is_librarian(username) or self.is_admin(username)):
+            book = Book(title, author, isbn, quantity)
+            self.books.append(book)
+            print(f"Book '{title}' added to the library inventory.")
+        else:
+            print("Unauthorized access.")
+
+    def remove_book(self, username, password, isbn):
+        """Method to remove a book from the library."""
+        if self.authenticate_user(username, password) and (self.is_librarian(username) or self.is_admin(username)):
+            for book in self.books:
+                if book.isbn == isbn:
+                    self.books.remove(book)
+                    print(f"Book '{book.title}' removed from the library inventory.")
+                    return
+            print("Book not in the library.")
+        else:
+            print("Access denied.")
+
