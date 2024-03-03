@@ -1,0 +1,54 @@
+class Book:
+    def __init__(self, title, author, isbn, quantity):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.quantity = quantity
+
+    def add_book(self, quantity=1):
+        """Method to add books to the library inventory."""
+        self.quantity += quantity
+        print(f"{quantity} '{self.title}' by {self.author} added to inventory.")
+
+    def update_book(self, title=None, author=None, isbn=None):
+        """Method to update book details."""
+        if title:
+            self.title = title
+        if author:
+            self.author = author
+        if isbn:
+            self.isbn = isbn
+    
+
+    def remove_book(self, quantity=1):
+        """Method to remove books from the library inventory."""
+        if quantity > self.quantity:
+            print(f"Error: Lack of '{self.title}' by {self.author} in inventory.")
+        else:
+            self.quantity -= quantity
+            print(f"{quantity} '{self.title}' by {self.author} removed from inventory.")
+
+    def display_details(self):
+        """Method to display book details."""
+        print("Book Details:")
+        print(f"Title: {self.title}")
+        print(f"Author: {self.author}")
+        print(f"ISBN: {self.isbn}")
+        print(f"Quantity: {self.quantity}")
+
+
+
+book1 = Book("Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "9780439362139", 15)
+book1.display_details()
+
+
+book1.add_book(7)
+book1.display_details()
+
+
+book1.update_book(author="Joanne Rowling")
+book1.display_details()
+
+
+book1.remove_book(5)
+book1.display_details()
