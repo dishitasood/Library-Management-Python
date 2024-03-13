@@ -1,0 +1,41 @@
+1. Book Class: This class represents each book in the library.
+
+  Patron Class: This class is library patrons.
+
+  Transaction Class: Handles book checkouts and returns.
+
+  Library Class: Manages the overall library system.
+
+  Database Integration: JSON for data storage.
+
+  User Interface: Provides a simple command-line interface (CLI) for interaction.
+
+  Advanced Features: Role-based access control (optional).
+
+2. Flow - Outlined the sequence of the functions within the code and programmed it to work for the project
+3. Examples: 
+ - Initialize the library
+ - To add books:
+a. Create a ‘Book’ object with the tile, author, ISBN, and quantity.
+b. Use the ‘add_book’ method of the ‘Library’ class to add the book to the library
+ - Adding Patrons:
+a. create a `Patron` object with the name, ID , email, and Phone.
+b. Use the `add_patron` method of the `Library` class to add the patron.
+ -  Check out a book:
+a. To check out a book to a patron, first ensure the book is available (quantity > 0). 
+Then use the ‘checkout’ method with the book's ISBN.
+
+4. a. Organized structure; By dividing the system into different parts like books, patrons etc, the code became much easier to manage.
+ b.  Saving Data: I wasn’t fully able to figure out how to save the data but got the idea behind it. Essentially I should use a method called JSON to save and load data from a file. This should also be possible for csv files, however I’m not fully confident with the scalability of a csv file-based system.
+ c.  Making it Easier for User: We were told to do this but I tried my best to make the code as easy to read as possible. We could turn it into a website to make it more appealing.
+ d. What I did: I studied through the old notes and looked for help online to finish this project. I implemented basic strategies like libraries, if-then statements, etc to finish this code.
+5. Probelms:
+a. working with erros 
+b. figuring the solution out for classes. 
+c. maintaining record of everything 
+d. managing to do everything byt he deadline 
+
+In conclusion, i had a great time doinjg the project. I think this really made me write good codes and 
+be a good programmer. 
+
+
